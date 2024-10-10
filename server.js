@@ -2,11 +2,15 @@ const express = require('express');
 const app = express();
  const db = require('./db');
 
+ require('dotenv').config();  
+
 //  const Person = require('./models/Person');
 //  const MenuItem = require('./models/Menu');
 
  const bodyParser = require('body-parser');
  app.use(bodyParser.json());
+
+ const PORT = process.env.PORT || 3001;
 
 // app.use(express.json());  // this can also used instead of bodyPArser
 
@@ -124,9 +128,15 @@ app.get('/',function(req,res){
 const personRoutes = require('./routes/personRoutes');
 app.use('/person',personRoutes);
 
-const menuRoutes = require('./routes/menuRoutes');
+const menuRoutes = require('./routes/menuItemRoutes');
 app.use('/menuItem',menuRoutes);
 
-app.listen(3001,(req, res)=>{
+
+
+app.listen(PORT,(req, res)=>{
     console.log('Server is running on port 3001');
 })
+
+// app.listen(3001,(req, res)=>{
+//     console.log('Server is running on port 3001');
+// })
